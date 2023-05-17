@@ -1,0 +1,16 @@
+.divCards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 95%;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+/* .divCards {
+  width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-gap: 15px;
+  margin: 0 auto;
+} */
