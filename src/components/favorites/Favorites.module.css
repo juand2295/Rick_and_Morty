@@ -1,0 +1,8 @@
+.divCards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 95%;
+    align-items: center;
+    justify-content: space-around;
+  }

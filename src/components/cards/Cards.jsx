@@ -10,6 +10,7 @@ export default function Cards(props) {
             // vamos a mapear por cada personaje una Card (lo que hacemos en vez de poner character como arg es destructuring)
             characters.map(({id, name, status, species, gender,origin, image}) => {
                return <Card key={id}// Card esta esperando 7 props (asi que las tengo que poner)
+               id = {id}
                name = {name}
                status = {status}
                species = {species}
@@ -17,7 +18,7 @@ export default function Cards(props) {
                origin = {origin.name}
                image = {image}
                // tambien hay que pasarle onClose, que esa no hace parte del objeto
-               onClose = {() => window.alert('Emulamos que se cierra la card')}
+               onClose = {() => props.onClose(id)}
                />
             })
          }

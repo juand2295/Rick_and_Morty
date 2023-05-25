@@ -1,42 +1,80 @@
 import styles from './Card.module.css'
+import { Link } from 'react-router-dom';
+import { addFav, removeFav } from '../../redux/actions';
+import { connect } from 'react-redux';
+import { useState, useEffect } from 'react';
 
-export default function Card({name,status,species,gender,origin,image,onClose}) {
+function Card(props) {
+   const {id, name,status,species,gender,image,onClose, addFav, removeFav, myFavorites} = props
+
+   const [isFav, setIsFav] = useState(false)
+
+   const handleFavorite = () => {
+      if(isFav === true){
+         setIsFav(false)
+         removeFav(id)
+      } else {
+         setIsFav(true)
+         addFav(props)
+      }
+   }
+
+   useEffect(() => {
+      myFavorites.forEach((fav) => {
+         if (fav.id === id) {
+            setIsFav(true);
+         }
+      });
+   }, [myFavorites]);
+
    return (
       <div className={styles.container}>
-         
+
          <div className={styles.buttonContainer}>
-            <button onClick={onClose}>X</button>
+
+            {
+               isFav ? (
+                  <button className={styles.favorite} onClick={handleFavorite}>❤️</button>
+               ) : (
+                  <button onClick={handleFavorite}>🤍</button>
+               )
+            }
+
+            <button className={styles.close} onClick={onClose}>X</button>
+
          </div>
 
+         <Link to={`/detail/${id}`}>
          <img src={image} alt='imagen' />
+         </Link>
 
          <div className={styles.text}>
+            <Link to={`/detail/${id}`}>
             <h2>{name}</h2>
+            </Link>
             <h3>Status: {status}</h3>
             <h3>Species: {species}</h3>
             <h3>Gender: {gender}</h3>
-            <h3>Origin: {origin}</h3>
+            {/* <h3>Origin: {origin}</h3> */}
          </div>
 
        
-         
-        
-         
 
       </div>
    );
 }
 
-// export default function Card(props) {
-//    return (
-//       <div>
-//          <button onClick={props.onClose}>X</button>
-//          <h2>name: {props.name}</h2>
-//          <h2>status: {props.status}</h2>
-//          <h2>species: {props.species}</h2>
-//          <h2>gender: {props.gender}</h2>
-//          <h2>origin: {props.origin}</h2>
-//          <img src={props.image} alt='imagen' />
-//       </div>
-//    );
-// }
+const mapDispatchToProps = (dispatch) => {
+   return {
+      addFav: (character) => dispatch(addFav(character)),
+      removeFav: (id) => dispatch(removeFav(id))
+   }
+}
+
+const mapStateToProps = (state) => {
+   return {
+      myFavorites: state.myFavorites
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card)
