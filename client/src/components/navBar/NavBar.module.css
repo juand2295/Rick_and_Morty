@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    justify-content: space-around;
+    height: 40px;
+    margin: 12px;  
+}
+
+.container input {
+    border-radius: 5px;
+    height: 30px;
+    text-align: center;
+}
+
+.container button{
+    height: 30px;
+    background-color: salmon;
+    &:hover {
+        box-shadow: 2px 2px 8px greenyellow;
+        border: solid black 2px
+      }
+    }

@@ -1,0 +1,30 @@
+.container{
+    display: flex;
+    margin: auto; 
+    width: 30%;
+    margin-top: 20px;
+    font-weight: bold;
+    padding: 20px;
+    background-color: gray;
+}
+
+.container input {
+    border-radius: 5px;
+    height: 20px;
+    text-align: center;
+}
+
+.container button{
+    font-weight: bold;
+    height: 30px;
+    background-color: salmon;
+    &:hover {
+        box-shadow: 2px 2px 8px greenyellow;
+        border: solid black 2px
+      }
+    }
+
+.container p{
+    color: lime;
+    font-weight: lighter;
+}
